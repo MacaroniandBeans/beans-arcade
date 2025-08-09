@@ -33,24 +33,6 @@ lib.callback.register('exchange:moneyToCoins', function(source, amount, costPerC
 end)
 
 
-RegisterCommand('anonmsg', function(source, args)
-    if source == 0 or IsPlayerAceAllowed(source, 'command.anonmsg') then
-        local message = table.concat(args, " ")
-        if message == "" then return end
-
-        for _, playerId in ipairs(GetPlayers()) do
-            TriggerClientEvent('lb-phone:client:receiveMessage', playerId, {
-                sender = '000000000',
-                name = 'Anonymous',
-                message = message,
-                time = os.date('%H:%M'),
-                anon = true
-            })
-        end
-    else
-        TriggerClientEvent('QBCore:Notify', source, 'You do not have permission to use this command.', 'error')
-    end
-end, false)
 
 
 
